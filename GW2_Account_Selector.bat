@@ -40,6 +40,7 @@ ECHO No Accounts found
 
 ECHO.
 ECHO Select Action:
+ECHO.
 ECHO 1: SELECT account - SELECTS a saved account 
 ECHO.
 ECHO 2: SAVE account - SAVES your current account
