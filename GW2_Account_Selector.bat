@@ -38,6 +38,10 @@ IF !count_accounts! EQU 0 (
 ECHO No Accounts found. Save your accounts first.
 )
 
+IF !count_accounts! GEQ 9 (
+ECHO Maximum number of accounts reached.
+)
+
 ECHO.
 ECHO Select Action:
 ECHO.
@@ -46,10 +50,17 @@ ECHO.
 ECHO 2: SAVE account - SAVES your current account
 ECHO Make sure the "Remember Account Name" and/or "Remember Password" options are checked in the GW2 Launcher
 ECHO and you have logged in at least once.
+ECHO Can save up to 9 accounts.
 ECHO.
 ECHO 3: DELETE account - DELETES a saved account
 ECHO.
 CHOICE /C:123
+
+IF !count_accounts! GEQ 9 (
+IF %ERRORLEVEL% == 2 (
+GOTO START
+)
+)
 
 GOTO ACTION_%ERRORLEVEL%
 
@@ -105,7 +116,8 @@ SET account_numbers=!account_numbers!!count_accounts!
 ECHO.
 ECHO [7mMake sure the "Remember Account Name" and/or "Remember Password" options are checked in the GW2 Launcher 
 ECHO and you have logged in at least once.
-ECHO You'll have to re-save your account after changing your password.[0m
+ECHO You'll have to re-save your account after changing your password.
+ECHO Can save up to 9 accounts.[0m
 ECHO.
 SET /P account_name=Name your saved account:
 SET account_selected=%folder_accounts%\%account_name%.dat
