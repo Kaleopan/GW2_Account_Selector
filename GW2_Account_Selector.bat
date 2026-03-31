@@ -35,7 +35,7 @@ ECHO %%~ni
 )
 
 IF !count_accounts! EQU 0 (
-ECHO No Accounts found
+ECHO No Accounts found. Save your accounts first.
 )
 
 ECHO.
@@ -44,7 +44,8 @@ ECHO.
 ECHO 1: SELECT account - SELECTS a saved account 
 ECHO.
 ECHO 2: SAVE account - SAVES your current account
-ECHO Make sure the "Remember Account Name" and/or "Remember Password" options are checked in the GW2 Launcher and you have logged in at least once.
+ECHO Make sure the "Remember Account Name" and/or "Remember Password" options are checked in the GW2 Launcher
+ECHO and you have logged in at least once.
 ECHO.
 ECHO 3: DELETE account - DELETES a saved account
 ECHO.
@@ -103,7 +104,8 @@ SET account_numbers=!account_numbers!!count_accounts!
 
 ECHO.
 ECHO [7mMake sure the "Remember Account Name" and/or "Remember Password" options are checked in the GW2 Launcher 
-ECHO and you have logged in at least once.[0m
+ECHO and you have logged in at least once.
+ECHO You'll have to re-save your account after changing your password.[0m
 ECHO.
 SET /P account_name=Name your saved account:
 SET account_selected=%folder_accounts%\%account_name%.dat
@@ -152,7 +154,7 @@ PING 127.0.0.1 -n 2 > NUL
 GOTO START
 
 :GW2_LAUNCH
-START "" "%filepath_executable%" -mapLoadInfo
+START "" "%filepath_executable%" -mapLoadInfo -shareArchive
 PING 127.0.0.1 -n 5 > NUL
 
 :EOF
