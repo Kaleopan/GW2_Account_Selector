@@ -6,3 +6,7 @@ Lets you:
 2. Select between saved account
 
 3. Delete saved accounts
+
+# Download:
+
+https://github.com/Kaleopan/GW2_Account_Selector/releases
