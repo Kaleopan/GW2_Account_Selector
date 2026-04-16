@@ -6,6 +6,7 @@ SET filepath_active=%AppData%\Guild Wars 2\Local.dat
 SET filepath_settings=%AppData%\Guild Wars 2\GFXSettings.Gw2-64.exe.xml
 
 SET folder_accounts=%AppData%\Guild Wars 2\ACCOUNTS
+MKDIR "%folder_accounts%"
 
 ::Load GW2 settings
 SET /P gw2settings=<"%filepath_settings%"
@@ -26,7 +27,14 @@ SET filepath_executable=%folder_install%\Gw2-64.exe
 ::Get saved accounts
 CLS
 ECHO.
-ECHO Accounts:
+
+SET /A count_accounts=0
+SET account_numbers=
+FOR %%i IN ("%folder_accounts%\*.dat") DO (
+SET /A count_accounts=count_accounts+1
+)
+ECHO Accounts[%count_accounts%]:
+
 SET /A count_accounts=0
 SET account_numbers=
 FOR %%i IN ("%folder_accounts%\*.dat") DO (
@@ -166,7 +174,7 @@ PING 127.0.0.1 -n 2 > NUL
 GOTO START
 
 :GW2_LAUNCH
-START "" "%filepath_executable%" -mapLoadInfo -shareArchive
+START "" "%filepath_executable%" -mapLoadInfo
 PING 127.0.0.1 -n 5 > NUL
 
 :EOF
